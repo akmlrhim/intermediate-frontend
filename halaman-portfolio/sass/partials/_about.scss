@@ -1,50 +1,56 @@
-main .about .main-about {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 32px;
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:map";
 
-	.photo-profile {
-		display: flex;
-		align-items: center;
+main .skills .main-skills .skill-list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(100px, 1fr));
+	gap: 16px;
 
-		img {
-			width: 80%;
-			display: block;
-			margin-inline: auto;
+	.card {
+		@include mix.bounce-shadow;
+
+		.card-image {
+			@include mix.full-size;
+
+			flex-grow: 1;
+			display: flex;
+
+			img {
+				width: 80%;
+				margin: auto;
+				line-height: 0;
+
+				transition: 0.3s ease-in-out;
+				filter: grayscale(1);
+			}
 		}
-	}
 
-	.description {
-		p {
-			margin-block-end: 8px;
+		&:hover .card-image img {
+			filter: grayscale(0);
 		}
 
-		.download-cv {
-			width: 100%;
-			padding: 10px 3rem;
+		.card-body .skill-name {
 			margin-block-start: 16px;
+			padding: 8px 16px;
 
-			text-transform: uppercase;
+			font-size: 24px;
+			text-align: center;
 		}
 	}
 }
 
 /* MD: minimum viewport width 768px or above */
-@media screen and (min-width: 768px) {
-	main .about .main-about {
-		flex-direction: row;
+@media screen and (min-width: map.get(var.$breakpoints, "md")) {
+	main .skills .main-skills .skill-list {
+		gap: 24px;
+		grid-template-columns: repeat(3, minmax(100px, 1fr));
+	}
+}
 
-		.photo-profile {
-			flex-basis: 40%;
-		}
-
-		.description {
-			flex-basis: 60%;
-
-			.download-cv {
-				width: fit-content;
-			}
-		}
+/* LG: minimum viewport width 992px or above */
+@media screen and (min-width: map.get(var.$breakpoints, "lg")) {
+	main .skills .main-skills .skill-list {
+		gap: 32px;
 	}
 }

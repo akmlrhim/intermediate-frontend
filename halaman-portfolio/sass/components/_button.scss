@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as var;
+
 button {
 	padding: 8px 24px;
 	font-size: 16px;
@@ -5,15 +7,15 @@ button {
 	display: block;
 
 	background-color: transparent;
-	border-radius: 6px;
+	border-radius: var.$secondary-border-radius;
 	border: 2px solid #00000022;
 
-	transition: all 0.15s linear;
+	transition: all var.$button-transitionanim-time var.$button-transitionanim-style;
 	cursor: pointer;
 }
 
 button:hover {
-	background-color: #2d3e50;
+	background-color: var.$primary-color;
 	color: #ffffff;
 }
 

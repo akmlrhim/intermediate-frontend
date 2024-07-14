@@ -1,3 +1,6 @@
+@use "../abstracts/variables" as var;
+@use "sass:map";
+
 *,
 *::before,
 *::after {
@@ -5,7 +8,7 @@
 }
 
 body {
-	font-family: "Nunito", sans-serif;
+	font-family: var.$primary-fonts;
 }
 
 .container {
@@ -70,28 +73,28 @@ main .section {
 }
 
 /* SM: minimum viewport width 576px or above */
-@media screen and (min-width: 576px) {
+@media screen and (min-width: map.get(var.$breakpoints, "sm")) {
 	.container {
 		max-width: 540px;
 	}
 }
 
 /* MD: minimum viewport width 768px or above */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: map.get(var.$breakpoints, "md")) {
 	.container {
 		max-width: 720px;
 	}
 }
 
 /* LG: minimum viewport width 992px or above */
-@media screen and (min-width: 992px) {
+@media screen and (min-width: map.get(var.$breakpoints, "lg")) {
 	.container {
 		max-width: 960px;
 	}
 }
 
 /* XL: minimum viewport width 1200px or above */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: map.get(var.$breakpoints, "xl")) {
 	.container {
 		max-width: 1140px;
 	}

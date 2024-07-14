@@ -1,3 +1,7 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:map";
+
 main .portfolios .main-portfolios .portfolio-list {
 	display: grid;
 	grid-template-columns: repeat(1, minmax(100px, 1fr));
@@ -9,37 +13,25 @@ main .portfolios .main-portfolios .portfolio-list {
 		position: relative;
 
 		.card-image {
-			width: 100%;
-			height: 100%;
+			@include mix.full-size;
 			max-height: 250px;
 
 			img {
-				width: 100%;
-				height: 100%;
+				@include mix.full-size;
+				@include mix.cover-center-image;
 
-				object-fit: cover;
-				object-position: center;
-
-				border-radius: 6px;
+				border-radius: var.$secondary-border-radius;
 
 				transition: 0.3s ease-in-out;
 			}
 		}
 
 		.card-body.floating {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+			@include mix.floating-object($is-full-width: true, $is-full-height: true);
+			@include mix.centering-using-flex($flex-dir: column);
 
 			background-color: #ffffff77;
-			border-radius: 6px;
+			border-radius: var.$secondary-border-radius;
 
 			scale: 0;
 			animation: hover-portfolio-disappear 0.5s ease-in-out;
@@ -70,7 +62,7 @@ main .portfolios .main-portfolios .portfolio-list {
 }
 
 /* MD: minimum viewport width 768px or above */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: map.get(var.$breakpoints, "md")) {
 	main .portfolios .main-portfolios .portfolio-list {
 		grid-template-columns: repeat(2, minmax(100px, 1fr));
 		gap: 24px;
@@ -78,14 +70,14 @@ main .portfolios .main-portfolios .portfolio-list {
 }
 
 /* LG: minimum viewport width 992px or above */
-@media screen and (min-width: 992px) {
+@media screen and (min-width: map.get(var.$breakpoints, "lg")) {
 	main .portfolios .main-portfolios .portfolio-list {
 		gap: 32px;
 	}
 }
 
 /* XL: minimum viewport width 1200px or above */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: map.get(var.$breakpoints, "xl")) {
 	main .portfolios .main-portfolios .portfolio-list {
 		grid-template-columns: repeat(3, minmax(100px, 1fr));
 	}
